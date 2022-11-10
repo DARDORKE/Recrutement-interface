@@ -18,3 +18,5 @@
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+/Diagramme de classe.PNG
+/Dictionnaire de données.png
