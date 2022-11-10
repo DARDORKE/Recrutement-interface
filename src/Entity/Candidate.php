@@ -7,8 +7,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+
 
 #[ORM\Entity(repositoryClass: CandidateRepository::class)]
+#[Vich\Uploadable]
 class Candidate extends User
 {
     #[ORM\Column(length: 255, nullable: true)]
@@ -17,18 +21,25 @@ class Candidate extends User
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $firstName = null;
 
-    #[ORM\Column(type: Types::BLOB, nullable: true)]
-    private $cv = null;
-
-    #[ORM\Column]
+    #[ORM\Column(options: ["default" => false])]
     private ?bool $isActive = null;
 
     #[ORM\ManyToMany(targetEntity: JobOffer::class, inversedBy: 'candidates')]
     private Collection $JobOffers;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $cv = null;
+
+    #[Vich\UploadableField(mapping: "candidate_cvs", fileNameProperty: "cv")]
+    private ?File $cvFile = null;
+
+    #[ORM\Column(type: "datetime", nullable: true)]
+    private ?\DateTime $updatedAt = null;
+
     public function __construct()
     {
         $this->JobOffers = new ArrayCollection();
+        $this->isActive = false;
     }
 
     public function getLastName(): ?string
@@ -55,17 +66,6 @@ class Candidate extends User
         return $this;
     }
 
-    public function getCv()
-    {
-        return $this->cv;
-    }
-
-    public function setCv($cv): self
-    {
-        $this->cv = $cv;
-
-        return $this;
-    }
 
     public function isIsActive(): ?bool
     {
@@ -106,5 +106,35 @@ class Candidate extends User
     public function __toString(): string
     {
         return (string) $this->getFirstName().' '.$this->getLastName();
+    }
+
+    public function getCv(): ?string
+    {
+        return $this->cv;
+    }
+
+    public function setCv(?string $cv): self
+    {
+        $this->cv = $cv;
+
+        return $this;
+    }
+
+    public function getCvFile(): ?File
+    {
+        return $this->cvFile;
+    }
+
+    public function setCvFile(File $cv = null)
+    {
+        $this->cvFile = $cv;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($cv) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
     }
 }

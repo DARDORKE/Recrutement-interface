@@ -25,11 +25,11 @@ class JobOffer
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column]
+    #[ORM\Column(options: ["default" => false])]
     private ?bool $isPublished = null;
 
     #[ORM\ManyToOne(inversedBy: 'JobOffers')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Recruiter $recruiter = null;
 
     #[ORM\ManyToMany(targetEntity: Candidate::class, mappedBy: 'JobOffers')]
@@ -38,6 +38,7 @@ class JobOffer
     public function __construct()
     {
         $this->candidates = new ArrayCollection();
+        $this->isPublished = false;
     }
 
     public function getId(): ?int

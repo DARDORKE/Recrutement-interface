@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Candidate;
+use App\Entity\JobOffer;
 use App\Entity\Recruiter;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -51,6 +52,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Comptes utilisateurs', 'fa-solid fa-users', User::class);
         yield MenuItem::linkToCrud('Comptes candidat', 'fa-solid fa-user-graduate', Candidate::class);
         yield MenuItem::linkToCrud('Comptes recruteur', 'fa-solid fa-user-tie', Recruiter::class);
-        yield MenuItem::linkToCrud('Offres d\'emploi', 'fa-solid fa-briefcase', Recruiter::class);
+        yield MenuItem::linkToCrud('Offres d\'emploi', 'fa-solid fa-briefcase', JobOffer::class);
     }
 }

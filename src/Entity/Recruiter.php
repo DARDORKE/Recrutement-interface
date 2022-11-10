@@ -16,8 +16,8 @@ class Recruiter extends User
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $address = null;
 
-    #[ORM\Column]
-    private ?bool $isActive = null;
+    #[ORM\Column(options: ["default" => false])]
+    private ?bool $isActive;
 
     #[ORM\OneToMany(mappedBy: 'recruiter', targetEntity: JobOffer::class, orphanRemoval: true)]
     private Collection $JobOffers;
@@ -25,6 +25,7 @@ class Recruiter extends User
     public function __construct()
     {
         $this->JobOffers = new ArrayCollection();
+        $this->isActive = false;
     }
 
     public function getCompanyName(): ?string
