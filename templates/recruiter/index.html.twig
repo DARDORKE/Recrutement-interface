@@ -13,7 +13,7 @@
 
           <!-- Image -->
           <div class="text-center">
-            <img src="./assets/img/illustrations/illustration-1.png" alt="..." class="img-fluid mb-3" style="width: 200px;">
+            <img  alt="..." class="img-fluid mb-3" style="width: 200px;">
           </div>
 
           <!-- Heading -->
@@ -91,10 +91,10 @@
       <div class="modal-content">
         <div class="card card-row">
           <div class="row gx-0">
-            <div class="col-12 col-md-6 bg-cover card-img-start" style="background-image: url(./assets/img/photos/photo-8.jpg);">
+            <div class="col-12 col-md-6 bg-cover card-img-start" >
 
               <!-- Image (placeholder) -->
-              <img src="./assets/img/photos/photo-8.jpg" alt="..." class="img-fluid d-md-none invisible">
+              <img  alt="..." class="img-fluid d-md-none invisible">
 
               <!-- Shape -->
               <div class="shape shape-end shape-fluid-y text-white d-none d-md-block">
@@ -167,7 +167,7 @@
           <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
 
           <!-- Image -->
-          <img src="./assets/img/photos/photo-7.jpg" alt="..." class="card-img-top">
+          <img alt="..." class="card-img-top">
 
           <!-- Shape -->
           <div class="position-relative">
@@ -232,10 +232,10 @@
       <div class="modal-content">
         <div class="card card-row">
           <div class="row gx-0">
-            <div class="col-12 col-md-6 bg-cover card-img-start" style="background-image: url(./assets/img/photos/photo-1.jpg);">
+            <div class="col-12 col-md-6 bg-cover card-img-start">
 
               <!-- Image (placeholder) -->
-              <img src="./assets/img/photos/photo-1.jpg" alt="..." class="img-fluid d-md-none invisible">
+              <img alt="..." class="img-fluid d-md-none invisible">
 
               <!-- Shape -->
               <div class="shape shape-end shape-fluid-y text-white d-none d-md-block">
@@ -308,7 +308,7 @@
           <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
 
           <!-- Image -->
-          <img src="./assets/img/photos/photo-21.jpg" alt="..." class="card-img-top">
+          <img alt="..." class="card-img-top">
 
           <!-- Shape -->
           <div class="position-relative">
@@ -425,7 +425,7 @@
 
       <!-- Brand -->
       <a class="navbar-brand" href="./index.html">
-        <img src="./assets/img/brand.svg" class="navbar-brand-img" alt="...">
+        <img class="navbar-brand-img" alt="...">
       </a>
 
       <!-- Toggler -->
@@ -443,33 +443,16 @@
 
         <!-- Navigation -->
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle active" id="navbarAccount" data-bs-toggle="dropdown" href="{{ path('app_recruiter') }}" aria-haspopup="true" aria-expanded="false">
+          <li class="nav-item dropdown active" id="navbarMyAccount">
+            <a class="nav-link dropdown-toggle"  data-bs-toggle="dropdown" href="#" aria-expanded="false">
               Mon compte
             </a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarPages" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" id="navbarOffers" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
               Mes offres d'emploi
             </a>
-            <div class="dropdown-menu dropdown-menu-lg" aria-labelledby="navbarPages">
-              <div class="row gx-0">
-                <div class="col-6">
-                  <div class="row gx-0">
-                    <div class="col-12 col-lg-6">
-                      <!-- List -->
-                      <a class="dropdown-item" href="./careers.html">
-                        Toutes mes offres d'emploi
-                      </a>
-                      <a class="dropdown-item mb-5" href="./career-single.html">
-                        Créer une nouvelle offre d'emploi
-                      </a>
 
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> <!-- / .row -->
           </li>
         </ul>
 
@@ -559,13 +542,13 @@
 
                 <!-- List -->
                 <ul class="card-list list text-gray-700 mb-6">
-                  <li class="list-item active">
-                    <a class="list-link text-reset" href="account-general.html">
+                  <li class="list-item active" id="breadcrumbInfo">
+                    <a class="list-link text-reset" href="#">
                       Informations générales
                     </a>
                   </li>
-                  <li class="list-item">
-                    <a class="list-link text-reset" href="account-security.html">
+                  <li class="list-item" id="breadcrumbSecurity">
+                    <a class="list-link text-reset" href="#">
                       Sécurité
                     </a>
                   </li>
@@ -578,15 +561,11 @@
 
                 <!-- List -->
                 <ul class="card-list list text-gray-700 mb-0">
-                  <li class="list-item">
-                    <a class="list-link text-reset" href="billing-plans-and-payment.html">
+                  <li class="list-item" id="breadcrumbOffers">
+                    <a class="list-link text-reset" href="#">
                       Mes offres d'emploi
                     </a>
-                  </li>
-                  <li class="list-item">
-                    <a class="list-link text-reset" href="billing-users.html">
-                      Créer une offre d'emploi
-                    </a>
+
                   </li>
                 </ul>
 
@@ -599,7 +578,7 @@
         <div class="col-12 col-md-9">
 
           <!-- Card -->
-          <div class="card card-bleed shadow-light-lg mb-6">
+          <div class="card card-bleed shadow-light-lg mb-6" id="cardInfo">
             <div class="card-header">
 
               <!-- Heading -->
@@ -624,7 +603,7 @@
           </div>
 
           <!-- Card -->
-          <div class="card card-bleed shadow-light-lg mb-6">
+          <div class="card card-bleed shadow-light-lg mb-6" id="cardSecurity">
             <div class="card-header">
 
               <!-- Heading -->
@@ -657,13 +636,19 @@
           </div>
 
           <!-- Card -->
-          <div class="card card-bleed shadow-light-lg mb-6">
+          <div class="card card-bleed shadow-light-lg mb-6" id="cardOffers">
             <div class="card-header">
 
               <!-- Heading -->
-              <h4 class="mb-0">
-                Mes offres d'emploi
-              </h4>
+              <div class="d-flex justify-content-between">
+                <h4 class="mb-0">
+                  Mes offres d'emploi
+                </h4>
+                <form class="p-2" action="{{ path('app_job_offer_crud_new') }}">
+                  <input type="hidden" name="_token" value="{{ csrf_token('new') }}">
+                  <button class="btn btn-primary">Créer une nouvelle offre</button>
+                </form>
+              </div>
 
             </div>
             <div class="card-body">
@@ -674,18 +659,24 @@
                     <div class="row align-items-center">
                       <div class="col">
                         <p class="mb-0">
-                          <div>
-                          <form method="post" action="{{ path('app_job_offer_crud_delete', {'id': JobOffer.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette offre ?');">
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ JobOffer.id) }}">
-                            <button class="btn btn-danger">Supprimer</button>
-                          </form>
+                          <div class="d-flex flex-row-reverse">
+                            <form class="p-2" method="post" action="{{ path('app_job_offer_crud_delete', {'id': JobOffer.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette offre ?');">
+                              <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ JobOffer.id) }}">
+                              <button class="btn btn-danger">Supprimer</button>
+                            </form>
+                            <form class="p-2" action="{{ path('app_job_offer_crud_edit', {'id': JobOffer.id}) }}">
+                              <input type="hidden" name="_token" value="{{ csrf_token('edit' ~ JobOffer.id) }}">
+                              <button class="btn btn-warning">Modifier</button>
+                            </form>
                           </div>
                           <h3 class="text-center fw-bolder">{{ JobOffer }}</h3>
                           <div class="text-center">{{ JobOffer.description }}</div>
 
                           <div>Liste des candidats :
                             {% for candidate in JobOffer.candidates %}
-                              <div>{{ candidate }}</div>
+                              <div>
+                                {{ candidate.firstName }} {{ candidate.lastName }}
+                              </div>
                             {% endfor %}
                           </div>
 
@@ -829,7 +820,7 @@
         <div class="col-12 col-md-4 col-lg-3">
 
           <!-- Brand -->
-          <img src="./assets/img/brand.svg" alt="..." class="footer-brand img-fluid mb-2">
+          <img  alt="..." class="footer-brand img-fluid mb-2">
 
           <!-- Text -->
           <p class="text-gray-700 mb-2">
@@ -840,22 +831,22 @@
           <ul class="list-unstyled list-inline list-social mb-6 mb-md-0">
             <li class="list-inline-item list-social-item me-3">
               <a href="#!" class="text-decoration-none">
-                <img src="./assets/img/icons/social/instagram.svg" class="list-social-icon" alt="...">
+                <img  class="list-social-icon" alt="...">
               </a>
             </li>
             <li class="list-inline-item list-social-item me-3">
               <a href="#!" class="text-decoration-none">
-                <img src="./assets/img/icons/social/facebook.svg" class="list-social-icon" alt="...">
+                <img  class="list-social-icon" alt="...">
               </a>
             </li>
             <li class="list-inline-item list-social-item me-3">
               <a href="#!" class="text-decoration-none">
-                <img src="./assets/img/icons/social/twitter.svg" class="list-social-icon" alt="...">
+                <img  class="list-social-icon" alt="...">
               </a>
             </li>
             <li class="list-inline-item list-social-item">
               <a href="#!" class="text-decoration-none">
-                <img src="./assets/img/icons/social/pinterest.svg" class="list-social-icon" alt="...">
+                <img class="list-social-icon" alt="...">
               </a>
             </li>
           </ul>

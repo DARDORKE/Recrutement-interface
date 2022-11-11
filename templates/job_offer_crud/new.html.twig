@@ -1,11 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New JobOffer{% endblock %}
+{% block title %}Créer une nouvelle offre d'emploi{% endblock %}
 
 {% block body %}
-    <h1>Create new JobOffer</h1>
-
-    {{ include('job_offer_crud/_form.html.twig') }}
-
-    <a href="{{ path('app_job_offer_crud_index') }}">back to list</a>
+    <div class="container-fluid">
+        <div class="row">
+            <h1 class="h3 mb-3 fw-bolder text-center">Créer une nouvelle offre d'emploi</h1>
+        </div>
+        <div class="d-flex justify-content-center">
+            {{ include('job_offer_crud/_form.html.twig') }}
+        </div>
+        <a href="{{ path('app_login') }}">Retour</a>
+    </div>
+    </div>
 {% endblock %}
