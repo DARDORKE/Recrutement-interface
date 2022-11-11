@@ -82,7 +82,7 @@ class RecruiterCrudController extends AbstractCrudController
             TextField::new('companyName', 'Nom de l\'entreprise')->setPermission('ROLE_RECRUITER'),
             TextField::new('address', 'Adresse de l\'entreprise')->setPermission('ROLE_RECRUITER'),
             BooleanField::new('isActive', 'Compte actif/inactif')->setPermission('ROLE_CONSULTANT'),
-            AssociationField::new('JobOffers', 'Offres d\'emploi')->hideWhenCreating()->hideWhenUpdating()->setPermission('ROLE_RECRUITER'),
+            AssociationField::new('JobOffers', 'Offres d\'emploi')->hideWhenCreating()->setPermission('ROLE_RECRUITER'),
         ];
     }
 

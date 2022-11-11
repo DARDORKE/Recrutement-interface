@@ -54,7 +54,7 @@ class JobOfferCrudController extends AbstractCrudController
             yield TextField::new('workplace','Lieu de travail')->setRequired(true)->setPermission('ROLE_USER');
             yield TextareaField::new('description', 'Description du poste')->setRequired(true)->setPermission('ROLE_USER');
             yield BooleanField::new('isPublished', 'Active/Inactive')->setPermission('ROLE_CONSULTANT');
-            yield AssociationField::new('recruiter', 'Recruteur')->hideWhenCreating()->hideWhenUpdating()->setPermission('ROLE_USER');
+            yield AssociationField::new('recruiter', 'Recruteur')->hideWhenUpdating()->setRequired(true)->setPermission('ROLE_USER');
             yield AssociationField::new('candidates', 'Liste des candidats')->hideWhenCreating()->hideWhenUpdating()->setPermission('ROLE_RECRUITER');
 
     }
