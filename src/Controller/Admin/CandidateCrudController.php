@@ -4,6 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\Candidate;
 use App\Form\RoleType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -35,6 +37,20 @@ class CandidateCrudController extends AbstractCrudController
             ->setPageTitle('detail', fn (Candidate $candidate) => sprintf('<b>%s</b>', $candidate->getEmail()))
             ->setPageTitle('edit', fn (Candidate $candidate) => sprintf('Modification de <b>%s</b>', $candidate->getEmail()))
             ->setAutofocusSearch()
+            ;
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->setPermissions([
+                Action::NEW => 'ROLE_ADMIN',
+                Action::DELETE => 'ROLE_ADMIN',
+                Action::EDIT => 'ROLE_CANDIDATE',
+                Action::INDEX => 'ROLE_CANDIDATE',
+                Action::DETAIL => 'ROLE_CANDIDATE',
+                Action::BATCH_DELETE => 'ROLE_ADMIN',
+            ])
             ;
     }
 

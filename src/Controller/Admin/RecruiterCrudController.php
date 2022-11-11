@@ -4,6 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\Recruiter;
 use App\Form\RoleType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -33,15 +35,30 @@ class RecruiterCrudController extends AbstractCrudController
             ->setPageTitle('detail', fn (Recruiter $recruiter) => sprintf('<b>%s</b>', $recruiter->getEmail()))
             ->setPageTitle('edit', fn (Recruiter $recruiter) => sprintf('Modification de <b>%s</b>', $recruiter->getEmail()))
             ->setAutofocusSearch()
+            ->setEntityPermission('ROLE_RECRUITER')
+            ;
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->setPermissions([
+                Action::NEW => 'ROLE_ADMIN',
+                Action::DELETE => 'ROLE_ADMIN',
+                Action::EDIT => 'ROLE_RECRUITER',
+                Action::INDEX => 'ROLE_RECRUITER',
+                Action::DETAIL => 'ROLE_RECRUITER',
+                Action::BATCH_DELETE => 'ROLE_ADMIN',
+            ])
             ;
     }
 
     public function configureFields(string $pageName): iterable
     {
         return [
-            EmailField::new('email')->setRequired(true),
-            Field::new('password','Mot de passe')
-                ->hideWhenUpdating()
+            EmailField::new('email')->setRequired(true)->setPermission('ROLE_RECRUITER'),
+            Field::new('password','Mot de passe')->setPermission('ROLE_RECRUITER')
+                ->hideWhenUpdating()->hideOnIndex()->hideOnDetail()
                 ->setRequired(true)
                 ->setFormType( RepeatedType::class )
                 ->setFormTypeOptions( [
@@ -52,7 +69,7 @@ class RecruiterCrudController extends AbstractCrudController
                     'invalid_message' => 'Les mots de passe ne correspondent pas.',
                 ])
             ,
-            ChoiceField::new( 'roles', 'Role')
+            ChoiceField::new( 'roles', 'Role')->setPermission('ROLE_RECRUITER')
                 ->setChoices([
                     'RECRUTEUR' => 'ROLE_RECRUITER',
                 ])
@@ -62,12 +79,10 @@ class RecruiterCrudController extends AbstractCrudController
                 ->setFormType(RoleType::class)
                 ->setRequired(true)
             ,
-            TextField::new('companyName', 'Nom de l\'entreprise'),
-            TextField::new('address', 'Adresse de l\'entreprise'),
-            BooleanField::new('isActive', 'Compte actif/inactif')
-
-            ,
-            AssociationField::new('JobOffers', 'Offres d\'emploi')->hideWhenUpdating()
+            TextField::new('companyName', 'Nom de l\'entreprise')->setPermission('ROLE_RECRUITER'),
+            TextField::new('address', 'Adresse de l\'entreprise')->setPermission('ROLE_RECRUITER'),
+            BooleanField::new('isActive', 'Compte actif/inactif')->setPermission('ROLE_CONSULTANT'),
+            AssociationField::new('JobOffers', 'Offres d\'emploi')->hideWhenCreating()->hideWhenUpdating()->setPermission('ROLE_RECRUITER'),
         ];
     }
 

@@ -19,7 +19,7 @@ class DashboardController extends AbstractDashboardController
     public function index(): Response
     {
         $routeBuilder = $this->container->get(AdminUrlGenerator::class);
-        $url = $routeBuilder->setController(UserCrudController::class)->generateUrl();
+        $url = $routeBuilder->setController(JobOfferCrudController::class)->generateUrl();
         return $this->redirect($url);
 
 
@@ -49,9 +49,9 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Comptes utilisateurs', 'fa-solid fa-users', User::class);
-        yield MenuItem::linkToCrud('Comptes candidat', 'fa-solid fa-user-graduate', Candidate::class);
-        yield MenuItem::linkToCrud('Comptes recruteur', 'fa-solid fa-user-tie', Recruiter::class);
-        yield MenuItem::linkToCrud('Offres d\'emploi', 'fa-solid fa-briefcase', JobOffer::class);
+        yield MenuItem::linkToCrud('Comptes utilisateurs', 'fa-solid fa-users', User::class)->setPermission('ROLE_ADMIN');
+        yield MenuItem::linkToCrud('Comptes candidat', 'fa-solid fa-user-graduate', Candidate::class)->setPermission('ROLE_CANDIDATE');
+        yield MenuItem::linkToCrud('Comptes recruteur', 'fa-solid fa-user-tie', Recruiter::class)->setPermission('ROLE_RECRUITER');
+        yield MenuItem::linkToCrud('Offres d\'emploi', 'fa-solid fa-briefcase', JobOffer::class)->setPermission('ROLE_USER');
     }
 }
