@@ -29,7 +29,7 @@ class JobOfferCrudController extends AbstractCrudController
             ->setPageTitle('detail', fn (JobOffer $jobOffer) => sprintf('<b>%s</b>', $jobOffer->getJobTitle()))
             ->setPageTitle('edit', fn (JobOffer $jobOffer) => sprintf('Modification de <b>%s</b>', $jobOffer->getJobTitle()))
             ->setAutofocusSearch()
-            ->setEntityPermission('ROLE_USER')
+            ->setEntityPermission('ROLE_CONSULTANT')
             ;
     }
 
@@ -37,25 +37,23 @@ class JobOfferCrudController extends AbstractCrudController
     {
         return $actions
             ->setPermissions([
-                Action::NEW => 'ROLE_RECRUITER',
-                Action::DELETE => 'ROLE_RECRUITER',
-                Action::EDIT => 'ROLE_RECRUITER',
-                Action::INDEX => 'ROLE_USER',
-                Action::DETAIL => 'ROLE_USER',
-                Action::BATCH_DELETE => 'ROLE_RECRUITER',
+                Action::NEW => 'ROLE_ADMIN',
+                Action::DELETE => 'ROLE_CONSULTANT',
+                Action::EDIT => 'ROLE_CONSULTANT',
+                Action::INDEX => 'ROLE_CONSULTANT',
+                Action::DETAIL => 'ROLE_CONSULTANT',
+                Action::BATCH_DELETE => 'ROLE_CONSULTANT',
             ])
             ;
     }
 
     public function configureFields(string $pageName): iterable
     {
-
-            yield TextField::new('jobTitle', 'Intitulé du poste')->setRequired(true)->setPermission('ROLE_USER');
-            yield TextField::new('workplace','Lieu de travail')->setRequired(true)->setPermission('ROLE_USER');
-            yield TextareaField::new('description', 'Description du poste')->setRequired(true)->setPermission('ROLE_USER');
+            yield TextField::new('jobTitle', 'Intitulé du poste')->setRequired(true)->setPermission('ROLE_CONSULTANT');
+            yield TextField::new('workplace','Lieu de travail')->setRequired(true)->setPermission('ROLE_CONSULTANT');
+            yield TextareaField::new('description', 'Description du poste')->setRequired(true)->setPermission('ROLE_CONSULTANT');
             yield BooleanField::new('isPublished', 'Active/Inactive')->setPermission('ROLE_CONSULTANT');
-            yield AssociationField::new('recruiter', 'Recruteur')->hideWhenUpdating()->setRequired(true)->setPermission('ROLE_USER');
-            yield AssociationField::new('candidates', 'Liste des candidats')->hideWhenCreating()->hideWhenUpdating()->setPermission('ROLE_RECRUITER');
-
+            yield AssociationField::new('recruiter', 'Recruteur')->hideWhenUpdating()->setRequired(true)->setPermission('ROLE_CONSULTANT');
+            yield AssociationField::new('candidates', 'Liste des candidats')->hideWhenCreating()->hideWhenUpdating()->setPermission('ROLE_CONSULTANT');
     }
 }

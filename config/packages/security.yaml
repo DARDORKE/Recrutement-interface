@@ -35,15 +35,15 @@ security:
             # switch_user: true
 
     role_hierarchy:
-        ROLE_CANDIDATE: [ROLE_CANDIDATE, ROLE_USER]
-        ROLE_RECRUITER: [ROLE_RECRUITER, ROLE_USER]
-        ROLE_CONSULTANT: [ROLE_CONSULTANT, ROLE_CANDIDATE, ROLE_RECRUITER]
+        ROLE_CANDIDATE: [ROLE_CANDIDATE]
+        ROLE_RECRUITER: [ROLE_RECRUITER]
+        ROLE_CONSULTANT: [ROLE_CONSULTANT]
         ROLE_ADMIN: [ROLE_ADMIN, ROLE_CONSULTANT]
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-         - { path: ^/admin, roles: ROLE_USER }
+         - { path: ^/admin, roles: ROLE_CONSULTANT }
         # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:

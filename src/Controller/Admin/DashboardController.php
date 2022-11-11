@@ -18,6 +18,8 @@ class DashboardController extends AbstractDashboardController
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_CONSULTANT');
+
         $routeBuilder = $this->container->get(AdminUrlGenerator::class);
         $url = $routeBuilder->setController(JobOfferCrudController::class)->generateUrl();
         return $this->redirect($url);
@@ -50,8 +52,8 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Comptes utilisateurs', 'fa-solid fa-users', User::class)->setPermission('ROLE_ADMIN');
-        yield MenuItem::linkToCrud('Comptes candidat', 'fa-solid fa-user-graduate', Candidate::class)->setPermission('ROLE_CANDIDATE');
-        yield MenuItem::linkToCrud('Comptes recruteur', 'fa-solid fa-user-tie', Recruiter::class)->setPermission('ROLE_RECRUITER');
-        yield MenuItem::linkToCrud('Offres d\'emploi', 'fa-solid fa-briefcase', JobOffer::class)->setPermission('ROLE_USER');
+        yield MenuItem::linkToCrud('Comptes candidat', 'fa-solid fa-user-graduate', Candidate::class)->setPermission('ROLE_CONSULTANT');
+        yield MenuItem::linkToCrud('Comptes recruteur', 'fa-solid fa-user-tie', Recruiter::class)->setPermission('ROLE_CONSULTANT');
+        yield MenuItem::linkToCrud('Offres d\'emploi', 'fa-solid fa-briefcase', JobOffer::class)->setPermission('ROLE_CONSULTANT');
     }
 }

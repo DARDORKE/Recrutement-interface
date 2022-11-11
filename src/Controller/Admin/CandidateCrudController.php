@@ -37,7 +37,7 @@ class CandidateCrudController extends AbstractCrudController
             ->setPageTitle('detail', fn (Candidate $candidate) => sprintf('<b>%s</b>', $candidate->getEmail()))
             ->setPageTitle('edit', fn (Candidate $candidate) => sprintf('Modification de <b>%s</b>', $candidate->getEmail()))
             ->setAutofocusSearch()
-            ->setEntityPermission('ROLE_CANDIDATE')
+            ->setEntityPermission('ROLE_CONSULTANT')
             ;
     }
 
@@ -46,11 +46,11 @@ class CandidateCrudController extends AbstractCrudController
         return $actions
             ->setPermissions([
                 Action::NEW => 'ROLE_ADMIN',
-                Action::DELETE => 'ROLE_ADMIN',
-                Action::EDIT => 'ROLE_CANDIDATE',
-                Action::INDEX => 'ROLE_CANDIDATE',
-                Action::DETAIL => 'ROLE_CANDIDATE',
-                Action::BATCH_DELETE => 'ROLE_ADMIN',
+                Action::DELETE => 'ROLE_CONSULTANT',
+                Action::EDIT => 'ROLE_ADMIN',
+                Action::INDEX => 'ROLE_CONSULTANT',
+                Action::DETAIL => 'ROLE_CONSULTANT',
+                Action::BATCH_DELETE => 'ROLE_CONSULTANT',
             ])
             ;
     }
@@ -58,8 +58,8 @@ class CandidateCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            EmailField::new('email')->setRequired(true)->setPermission('ROLE_CANDIDATE'),
-            Field::new('password','Mot de passe')->setRequired(true)->setPermission('ROLE_CANDIDATE')
+            EmailField::new('email')->setRequired(true)->setPermission('ROLE_CONSULTANT'),
+            Field::new('password','Mot de passe')->setRequired(true)->setPermission('ROLE_CONSULTANT')
                 ->hideWhenUpdating()->hideOnDetail()->hideOnIndex()
                 ->setFormType( RepeatedType::class )
                 ->setFormTypeOptions( [
@@ -79,9 +79,9 @@ class CandidateCrudController extends AbstractCrudController
                 ->setFormType(RoleType::class)
                 ->setRequired(true)
             ,
-            TextField::new('firstName', 'Prénom')->setPermission('ROLE_CANDIDATE'),
-            TextField::new('lastName', 'Nom')->setPermission('ROLE_CANDIDATE'),
-            ImageField::new('cv', 'Votre CV')->setPermission('ROLE_CANDIDATE')
+            TextField::new('firstName', 'Prénom')->setPermission('ROLE_CONSULTANT'),
+            TextField::new('lastName', 'Nom')->setPermission('ROLE_CONSULTANT'),
+            ImageField::new('cv', 'Votre CV')->setPermission('ROLE_CONSULTANT')
                 ->setFormType(FileUploadType::class)
                 ->setBasePath('candidate_cvs/')
                 ->setUploadDir('public/candidate_cvs/')
@@ -89,9 +89,9 @@ class CandidateCrudController extends AbstractCrudController
                 ->hideOnIndex()
                 ->setFormTypeOptions(['attr' => [
                         'accept' => 'application/pdf']]),
-            TextField::new('cv', 'CV')->setTemplatePath('admin/fields/document_link.html.twig')->onlyOnIndex()->setPermission('ROLE_CANDIDATE'),
+            TextField::new('cv', 'CV')->setTemplatePath('admin/fields/document_link.html.twig')->onlyOnIndex()->setPermission('ROLE_CONSULTANT'),
             BooleanField::new('isActive', 'Compte actif/inactif')->setPermission('ROLE_CONSULTANT'),
-            AssociationField::new('JobOffers', 'Offres d\'emploi')->hideWhenCreating()->setPermission('ROLE_CANDIDATE')
+            AssociationField::new('JobOffers', 'Offres d\'emploi')->hideWhenCreating()->setPermission('ROLE_CONSULTANT')
         ];
     }
 }

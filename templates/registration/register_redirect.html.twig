@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div>Bienvenue sur Restorecrute !</div>
+
+    <div>Afin de poursuivre votre inscription, veuillez préciser votre type de compte :</div>
+
+    <div>
+        <a href="{{ path('app_register_recruiter') }}">Je suis recruteur</a>
+
+        <a href="{{ path('app_register_candidate') }}">Je suis candidat</a>
+    </div>
+
+    <div>
+        <a href="{{ path('app_login') }}">J'ai déjà un compte</a>
+    </div>
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+

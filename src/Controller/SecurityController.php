@@ -12,9 +12,25 @@ class SecurityController extends AbstractController
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
+        $user = $this->getUser();
+
+        if (!(is_null($user))) {
+            if (in_array('ROLE_ADMIN' , $user->getRoles())) {
+                return $this->redirectToRoute('admin');
+            }
+
+            if (in_array('ROLE_CONSULTANT' , $user->getRoles())) {
+                return $this->redirectToRoute('admin');
+            }
+
+            if (in_array('ROLE_RECRUITER' , $user->getRoles())) {
+                return $this->redirectToRoute('app_recruiter');
+            }
+
+            if (in_array('ROLE_CANDIDATE' , $user->getRoles())) {
+                return $this->redirectToRoute('app_candidate');
+            }
+        }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
