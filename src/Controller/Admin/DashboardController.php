@@ -45,7 +45,11 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Restorecrute');
+            ->setTitle(
+                '<img src="img/brand.png" alt="logo" width="250">'
+            )
+            ->setFaviconPath('img/brand.png');
+
     }
 
     public function configureMenuItems(): iterable
