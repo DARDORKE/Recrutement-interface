@@ -7,6 +7,7 @@ use App\Form\EmailUpdateFormType;
 use App\Form\PasswordUpdateFormType;
 use App\Form\RegistrationRecruiterFormType;
 use App\Form\UpdateRecruiterFormType;
+use App\Repository\JobOfferRepository;
 use App\Security\AppAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -55,11 +56,10 @@ class RecruiterController extends AbstractController
             $entityManager->flush();
         }
 
-
         return $this->render('recruiter/index.html.twig', [
             'updateAccountForm' => $form->createView(),
             'passwordUpdateForm' => $form2->createView(),
-            'emailUpdateForm' => $form3->createView()
+            'emailUpdateForm' => $form3->createView(),
         ]);
     }
 }

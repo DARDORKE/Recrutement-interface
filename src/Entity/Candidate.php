@@ -10,9 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
 
-
-#[ORM\Entity(repositoryClass: CandidateRepository::class)]
 #[Vich\Uploadable]
+#[ORM\Entity(repositoryClass: CandidateRepository::class)]
 class Candidate extends User
 {
     #[ORM\Column(length: 255, nullable: true)]

@@ -13,4 +13,4 @@ import './js/theme'
 // start the Stimulus application
 import './bootstrap';
 
-import './js/recruiter-display'
+import './js/display'
